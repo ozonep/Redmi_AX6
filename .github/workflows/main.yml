@@ -1,0 +1,13 @@
+name: Publish Docker
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: ozonep/gogitea
+        username: ozonep
+        password: 7bf691aa-4a88-4d1b-9148-0cc95e649856
