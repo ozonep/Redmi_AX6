@@ -16,6 +16,7 @@ RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt && \
     git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom --depth 1 openwrt/package/luci-theme-infinityfreedom && \
     git clone https://github.com/sirpdboy/luci-theme-opentopd --depth 1 openwrt/package/luci-theme-opentopd
 WORKDIR /workdir/openwrt
+RUN mkdir -p ./dl
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
 COPY download.pl ./scripts/download.pl
