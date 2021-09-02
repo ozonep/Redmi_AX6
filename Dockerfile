@@ -6,7 +6,7 @@ ENV TZ Europe/Moscow
 
 RUN rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc && apt update -y && apt upgrade -y && \
     apt install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev subversion flex uglifyjs git-core gcc p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++ antlr3 gperf wget curl swig rsync tzdata \ 
-    lib32gcc1 libc6-dev-i386 gcc-8-multilib g++-8-multilib aria2 && \
+    lib32gcc1 libc6-dev-i386 gcc-8-multilib g++-8-multilib && \
     apt autoremove -y
 RUN useradd -rm -d /workdir -s /bin/bash -u 1001 newuser
 RUN mkdir -p /workdir && chown newuser /workdir
@@ -16,11 +16,9 @@ RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt && \
     git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom --depth 1 openwrt/package/luci-theme-infinityfreedom && \
     git clone https://github.com/sirpdboy/luci-theme-opentopd --depth 1 openwrt/package/luci-theme-opentopd
 WORKDIR /workdir/openwrt
-RUN mkdir -p ./dl
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
-COPY download.pl ./scripts/download.pl
-RUN make -j8 download V=s
+RUN make -j4 download V=s
 RUN echo -e "compile" && \
     make -j1 V=s && \
     echo "::set-output name=status::success"
