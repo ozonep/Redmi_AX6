@@ -7,8 +7,6 @@ jobs:
     - uses: actions/checkout@master
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
-      env:
-        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       with:
         name: ozonep/openwrt
         username: ozonep
