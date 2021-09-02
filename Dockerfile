@@ -19,7 +19,6 @@ WORKDIR /workdir/openwrt
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
 COPY addfwhdr.c tools/firmware-utils/src/addfwhdr.c
-RUN sed -i 's/192.168.1.1/192.168.10.1/g' ./package/base-files/files/bin/config_generate
 RUN make -j8 download V=s
 RUN echo -e "compile" && \
     make -j1 V=s && \
