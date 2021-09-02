@@ -18,7 +18,6 @@ RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt && \
 WORKDIR /workdir/openwrt
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
-COPY addfwhdr.c tools/firmware-utils/src/addfwhdr.c
 RUN make -j8 download V=s
 RUN echo -e "compile" && \
     make -j1 V=s && \
