@@ -3,7 +3,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: dev
     steps:
     - uses: actions/checkout@master
     - name: Publish to Registry
@@ -11,6 +10,6 @@ jobs:
       env:
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       with:
-        name: ozonep/gogitea
+        name: ozonep/openwrt
         username: ozonep
-        password: ${DOCKER_TOKEN}
+        password: ${{ secrets.DOCKER_TOKEN }}
