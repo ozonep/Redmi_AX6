@@ -3,10 +3,12 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG en_US.UTF-8
 ENV TZ Europe/Moscow
+ENV GOOS linux 
+ENV GOARCH arm64
 
 RUN rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc && apt update -y && apt upgrade -y && \
     apt install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev subversion flex uglifyjs git-core gcc p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++ antlr3 gperf wget curl swig rsync tzdata \ 
-    lib32gcc1 libc6-dev-i386 gcc-8-multilib g++-8-multilib && \
+    lib32gcc1 libc6-dev-i386 gcc-8-multilib g++-8-multilib aria2 && \
     apt autoremove -y
 RUN useradd -rm -d /workdir -s /bin/bash -u 1001 newuser
 RUN mkdir -p /workdir && chown newuser /workdir
@@ -18,6 +20,7 @@ RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt && \
 WORKDIR /workdir/openwrt
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
+COPY download.pl ./scripts/download.pl
 RUN make -j8 download V=s
 RUN echo -e "compile" && \
     make -j1 V=s && \
