@@ -3,11 +3,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
     - uses: actions/checkout@master
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
+      env:
+        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       with:
         name: ozonep/gogitea
         username: ozonep
-        password: 7bf691aa-4a88-4d1b-9148-0cc95e649856
+        password: ${DOCKER_TOKEN}
