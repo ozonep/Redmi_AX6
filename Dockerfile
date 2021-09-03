@@ -18,6 +18,7 @@ RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt && \
 WORKDIR /workdir/openwrt
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
+COPY feeds.conf.default ./feeds.conf.default
 RUN make -j4 download V=s
 RUN echo -e "compile" && \
     make -j1 V=s && \
