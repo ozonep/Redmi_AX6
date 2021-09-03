@@ -6,7 +6,7 @@ ENV TZ Europe/Moscow
 
 RUN rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc && apt update -y && apt upgrade -y && \
     apt install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev subversion flex uglifyjs git-core p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler antlr3 gperf wget curl swig rsync tzdata \ 
-    lib32gcc1 libc6-dev-i386 gcc-8-multilib g++-8-multilib && \
+    libc6-dev gcc g++ && \
     apt autoremove -y
 RUN useradd -rm -d /workdir -s /bin/bash -u 1001 newuser
 RUN mkdir -p /workdir && chown newuser /workdir
