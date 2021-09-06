@@ -12,10 +12,10 @@ RUN useradd -rm -d /workdir -s /bin/bash -u 1001 newuser
 RUN mkdir -p /workdir && chown newuser /workdir
 WORKDIR /workdir
 USER newuser
-RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt && \
-    git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom --depth 1 openwrt/package/luci-theme-infinityfreedom && \
-    git clone https://github.com/sirpdboy/luci-theme-opentopd --depth 1 openwrt/package/luci-theme-opentopd
+RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt
 WORKDIR /workdir/openwrt
+RUN rm -rf ./package/lean/luci-theme-argon
+COPY luci-theme-argon/. ./package/lean/luci-theme-argon/.
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
 RUN sed -i 's/192.168.1.1/192.168.31.1/g' ./package/base-files/files/bin/config_generate
