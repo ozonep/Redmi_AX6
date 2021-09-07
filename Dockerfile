@@ -14,10 +14,13 @@ WORKDIR /workdir
 USER newuser
 RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt
 WORKDIR /workdir/openwrt
+USER root
 RUN rm -rf ./package/lean/luci-theme-argon && rm ./feeds.conf.default
-COPY luci-theme-argon/. ./package/lean/luci-theme-argon/.
-COPY feeds.conf.default ./feeds.conf.default
-COPY new.config ./.config
+COPY --chown=newuser luci-theme-argon/. ./package/lean/luci-theme-argon/.
+COPY --chown=newuser feeds.conf.default ./feeds.conf.default
+COPY --chown=newuser new.config ./.config
+RUN chmod +x ./.config && chmod +x ./feeds.conf.default
+USER newuser
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 RUN sed -i 's/192.168.1.1/192.168.31.1/g' ./package/base-files/files/bin/config_generate
 RUN sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' ./package/base-files/files/etc/sysctl.conf
