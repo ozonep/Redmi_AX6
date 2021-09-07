@@ -19,9 +19,9 @@ COPY luci-theme-argon/. ./package/lean/luci-theme-argon/.
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY new.config ./.config
 RUN sed -i 's/192.168.1.1/192.168.31.1/g' ./package/base-files/files/bin/config_generate
-COPY feeds.conf.default ./feeds.conf.default
-RUN make -j4 download V=s
-RUN echo -e "compile" && \
+RUN sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' ./package/base-files/files/etc/sysctl.conf
+RUN make defconfig && make -j8 download V=s
+RUN echo -e "compiling" && \
     make -j1 V=s && \
     echo "::set-output name=status::success"
 
