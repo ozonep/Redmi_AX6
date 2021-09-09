@@ -12,7 +12,7 @@ RUN useradd -rm -d /workdir -s /bin/bash -u 1001 newuser
 RUN mkdir -p /workdir && chown newuser /workdir
 WORKDIR /workdir
 USER newuser
-RUN git clone https://github.com/Ailick/lede-custom --depth 1 -b sfe-1 openwrt
+RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt
 WORKDIR /workdir/openwrt
 USER root
 RUN rm -rf ./package/lean/luci-theme-argon && rm ./feeds.conf.default
