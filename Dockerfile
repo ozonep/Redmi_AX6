@@ -16,12 +16,15 @@ RUN git clone https://github.com/coolsnowwolf/lede --depth 1 openwrt
 WORKDIR /workdir/openwrt
 USER root
 RUN rm -rf ./package/lean/luci-theme-argon && rm ./feeds.conf.default
+COPY --chown=newuser patches/. ./
 COPY --chown=newuser luci-theme-argon/. ./package/lean/luci-theme-argon/.
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
 COPY --chown=newuser new.config ./.config
 RUN chmod +x ./.config && chmod +x ./feeds.conf.default
 USER newuser
+RUN git apply 7791.patch && git apply 7805.patch && rm 7791.patch 7805.patch
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
+COPY --chown=newuser nextdns.config ./feeds/packages/net/nextdns/files/nextdns.config
 RUN sed -i 's/192.168.1.1/192.168.31.1/g' ./package/base-files/files/bin/config_generate
 RUN sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' ./package/base-files/files/etc/sysctl.conf
 RUN make defconfig && make -j8 download V=s
