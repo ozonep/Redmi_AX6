@@ -144,7 +144,7 @@ input,select {
 
 .cbi-dropdown,input,select {
     line-height: normal;
-    font-family: "SF Pro",sans-serif,Helvetica,Arial,sans-serif;
+    font-family: "SF Pro",sans-serif;
     border: 1px solid #e4eaec;
     background-color: #fff;
     transition: color 150ms ease,border-color 150ms ease,opacity 150ms ease;
@@ -1085,7 +1085,7 @@ fieldset>fieldset {
     margin: 0;
     line-height: normal;
     font-size: 10pt;
-    font-family: "SF Pro",sans-serif,Helvetica,Arial,sans-serif;
+    font-family: "SF Pro",sans-serif;
     border: 1px solid #e4eaec;
     background-color: #fff;
     transition: color 150ms ease,border-color 150ms ease,opacity 150ms ease;
