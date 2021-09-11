@@ -2,23 +2,18 @@
     0% {
         transform: rotate(0)
     }
-    100% {
+
+    to {
         transform: rotate(360deg)
     }
 }
 
 @font-face {
-    font-family:'icomoon';
-    src:url(../fonts/font.woff) format('woff');
-    font-weight:400;
-    font-style:normal
+    font-family:'icomoon';src:url(../fonts/font.woff) format('woff');font-weight:400;font-style:normal
 }
 
 @font-face {
-    font-family:"advancedtomato";
-    src:url(../fonts/advancedtomato.woff) format("woff");
-    font-weight:400;
-    font-style:normal
+    font-family:"advancedtomato";src:url(../fonts/advancedtomato.woff) format("woff");font-weight:400;font-style:normal
 }
 
 .table {
@@ -104,7 +99,7 @@
 }
 
 html {
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
 }
 
 body,html {
@@ -307,13 +302,15 @@ header>.container>a[class=brand]:after {
 }
 
 .danger {
-    background-color: salmon!important;
+    background-color: salmon!important
+}
+
+.danger,.success,.warning {
     color: #000
 }
 
-.success,.warning {
-    background-color: khaki!important;
-    color: #000
+.warning {
+    background-color: khaki!important
 }
 
 .success {
@@ -461,7 +458,7 @@ header>.container>a[class=brand]:after {
     line-height: 40px
 }
 
-.main>.main-left>.nav>li>a[data-title=Logout]:before,.main>.main-left>.nav>li>a[data-title=Reboot]:before {
+.main>.main-left>.nav>li>a[data-title=Logout]:before {
     content: "\e005"
 }
 
@@ -550,7 +547,7 @@ li {
     margin: 40px 40px 40px 50px
 }
 
-h1,h2 {
+.panel-title,h1,h2,h3 {
     padding-bottom: 10px
 }
 
@@ -566,8 +563,7 @@ h2 {
 }
 
 .panel-title,h3 {
-    font-size: 10pt;
-    padding-bottom: 10px
+    font-size: 10pt
 }
 
 h3 {
@@ -1094,7 +1090,7 @@ fieldset>fieldset {
     border-radius: 3px
 }
 
-#syslog,small {
+#cbi-firewall-redirect table *,#cbi-firewall-zone table *,#cbi-network-switch_vlan table *,#syslog,small {
     font-size: small
 }
 
@@ -1294,6 +1290,17 @@ small {
     color: #76838f
 }
 
+.label {
+    padding: .3rem .8rem;
+    font-weight: 700;
+    color: #fff!important;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: #bfbfbf;
+    text-shadow: none;
+    text-decoration: none
+}
+
 input[name=nslookup],input[name=ping],input[name=traceroute] {
     width: 80%
 }
@@ -1306,18 +1313,6 @@ header>.container>.pull-right>* {
 
 #xhr_poll_status>.label.success {
     background-color: #14ce14
-}
-
-.label {
-    padding: .3rem .8rem;
-    font-weight: 700;
-    color: #fff!important;
-    text-transform: uppercase;
-    white-space: nowrap;
-    background-color: #bfbfbf;
-    border-radius: 3px;
-    text-shadow: none;
-    text-decoration: none
 }
 
 .notice {
@@ -1463,10 +1458,6 @@ header>.container>.pull-right>* {
 
 .node-status-iptables .cbi-tabmenu,.node-system-flashops .cbi-tabmenu,.node-system-packages .cbi-tabmenu {
     border: 0
-}
-
-#cbi-firewall-redirect table *,#cbi-firewall-zone table *,#cbi-network-switch_vlan table * {
-    font-size: small
 }
 
 #cbi-firewall-redirect table input[type=text],#cbi-firewall-zone table input[type=text],#cbi-network-switch_vlan table input[type=text] {
