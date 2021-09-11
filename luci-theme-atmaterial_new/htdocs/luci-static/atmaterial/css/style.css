@@ -105,7 +105,6 @@
 
 html {
     -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%
 }
 
 body,html {
@@ -149,7 +148,6 @@ input,select {
     border: 1px solid #e4eaec;
     background-color: #fff;
     transition: color 150ms ease,border-color 150ms ease,opacity 150ms ease;
-    -webkit-transition: color 150ms ease,border-color 150ms ease,opacity 150ms ease;
     outline-style: none;
     vertical-align: baseline;
     border-radius: 3px
@@ -371,9 +369,6 @@ header>.container>a[class=brand]:after {
     vertical-align: middle;
     touch-action: manipulation;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     background-image: none;
     min-width: 6rem;
@@ -672,14 +667,10 @@ fieldset>fieldset {
     border: 0;
     border-radius: .2rem;
     cursor: pointer;
-    -ms-touch-action: manipulation;
     touch-action: manipulation;
     background-image: none;
     text-align: center;
     white-space: nowrap;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     font-size: 10pt;
     width: auto!important;
@@ -1098,7 +1089,6 @@ fieldset>fieldset {
     border: 1px solid #e4eaec;
     background-color: #fff;
     transition: color 150ms ease,border-color 150ms ease,opacity 150ms ease;
-    -webkit-transition: color 150ms ease,border-color 150ms ease,opacity 150ms ease;
     outline-style: none;
     vertical-align: baseline;
     border-radius: 3px
@@ -1325,7 +1315,6 @@ header>.container>.pull-right>* {
     text-transform: uppercase;
     white-space: nowrap;
     background-color: #bfbfbf;
-    -webkit-border-radius: 3px;
     border-radius: 3px;
     text-shadow: none;
     text-decoration: none
