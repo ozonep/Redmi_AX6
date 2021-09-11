@@ -18,6 +18,7 @@ USER root
 RUN rm -rf ./package/lean/luci-theme-argon && rm ./feeds.conf.default
 COPY --chown=newuser patches/. ./
 COPY --chown=newuser luci-theme-argon/. ./package/lean/luci-theme-argon/.
+COPY --chown=newuser luci-theme-fruitbingo/. ./package/lean/luci-theme-fruitbingo/.
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
 COPY --chown=newuser new.config ./.config
 RUN chmod +x ./.config && chmod +x ./feeds.conf.default
