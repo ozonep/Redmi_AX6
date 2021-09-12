@@ -30,7 +30,7 @@ RUN sed -i 's/OpenWrt_2.4G/OpenWrt_5G/g'  package/kernel/mac80211/files/lib/wifi
 RUN sed -i '185s/OpenWrt_5G/OpenWrt_2.4G/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 RUN make defconfig && make -j8 download V=s
 RUN echo -e "compiling" && \
-    make -j2 V=s && \
+    make -j1 V=s && \
     echo "::set-output name=status::success"
 
 

@@ -5,7 +5,7 @@
 
 include $(TOPDIR)/rules.mk
 
-THEME_NAME:=opentopd
+THEME_NAME:=opentopd_new
 THEME_TITLE:=opentopd Theme
 
 PKG_NAME:=luci-theme-$(THEME_NAME)
@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
 
 include $(TOPDIR)/feeds/luci/luci.mk
 
-define Package/luci-theme-opentopd/postinst
+define Package/luci-theme-opentopd_new/postinst
 #!/bin/sh
 
 rm -Rf /var/luci-modulecache
