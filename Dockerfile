@@ -17,8 +17,8 @@ WORKDIR /workdir/openwrt
 USER root
 RUN rm -rf ./package/lean/luci-theme-argon && rm ./feeds.conf.default
 COPY --chown=newuser patches/. ./
-COPY --chown=newuser luci-theme-argon/. ./package/lean/luci-theme-argon/.
-COPY --chown=newuser luci-theme-fruitbingo/. ./package/lean/luci-theme-fruitbingo/.
+COPY --chown=newuser luci-theme-atmaterial_new/. ./package/lean/luci-theme-atmaterial_new/.
+COPY --chown=newuser luci-theme-opentopd/. ./package/lean/luci-theme-opentopd/.
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
 COPY --chown=newuser new.config ./.config
 RUN chmod +x ./.config && chmod +x ./feeds.conf.default
