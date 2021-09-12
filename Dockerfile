@@ -17,14 +17,10 @@ USER newuser
 RUN git clone https://github.com/Boos4721/openwrt --depth 1 openwrt
 WORKDIR /workdir/openwrt
 USER root
-# COPY --chown=newuser patches/. ./
 COPY --chown=newuser luci-theme-atmaterial_new/. ./package/lean/luci-theme-atmaterial_new/.
-COPY --chown=newuser luci-theme-opentopd/. ./package/lean/luci-theme-opentopd/.
-# COPY --chown=newuser feeds.conf.default ./feeds.conf.default
+COPY --chown=newuser luci-theme-opentopd_new/. ./package/lean/luci-theme-opentopd_new/.
 COPY --chown=newuser new.config ./.config
-# RUN chmod +x ./.config && chmod +x ./feeds.conf.default
 USER newuser
-# RUN git apply 7791.patch && git apply 7805.patch && rm 7791.patch 7805.patch
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY --chown=newuser Makefile feeds/packages/net/nextdns/Makefile
 COPY --chown=newuser nextdns.config feeds/packages/net/nextdns/files/nextdns.config
