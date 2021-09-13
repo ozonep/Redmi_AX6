@@ -1,6 +1,8 @@
 name: Build OpenWrt for AX6
 
-on:
+on:  
+  push:
+    branches: [ arm ]
   repository_dispatch:
   workflow_dispatch:
     inputs:
