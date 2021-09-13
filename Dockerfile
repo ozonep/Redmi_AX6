@@ -17,13 +17,12 @@ USER newuser
 RUN git clone https://github.com/Boos4721/openwrt --depth 1 openwrt
 WORKDIR /workdir/openwrt
 USER root
-COPY --chown=newuser luci-theme-atmaterial_new/. ./package/luci-theme-atmaterial_new/.
-COPY --chown=newuser luci-theme-opentopd/. ./package/luci-theme-opentopd/.
+COPY --chown=newuser luci-theme-atmaterial_new/. ./package/lean/luci-theme-atmaterial_new/.
+COPY --chown=newuser luci-theme-opentopd/. ./package/lean/luci-theme-opentopd/.
 COPY --chown=newuser mymin.config ./.config
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
 USER newuser
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
-RUN rm -rf feeds/Boos/wrtbwmon && rm -rf feeds/Boos/luci-app-ssr-plus && rm -rf feeds/Boos/luci-app-passwall && rm -rf feeds/Boos/luci-app-passwall-plus && rm -rf feeds/Boos/luci-app-wrtbwmon
 COPY --chown=newuser Makefile feeds/packages/net/nextdns/Makefile
 COPY --chown=newuser nextdns.config feeds/packages/net/nextdns/files/nextdns.config
 RUN sed -i 's/10.10.10.1/192.168.30.1/g' package/base-files/files/bin/config_generate

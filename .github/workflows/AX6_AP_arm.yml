@@ -51,6 +51,10 @@ jobs:
         git clone $REPO_URL --depth 1 -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
+    - name: Copy updated theme
+      run: |
+        cp feeds.conf.default openwrt/feeds.conf.default
+
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
@@ -68,7 +72,7 @@ jobs:
     - name: Copy updated theme
       run: |
         mv luci-theme-atmaterial_new openwrt/package/lean/luci-theme-atmaterial_new
-        mv luci-theme-opentopd_new openwrt/package/lean/luci-theme-opentopd_new
+        mv luci-theme-opentopd openwrt/package/lean/luci-theme-opentopd
 
     - name: Download package
       id: package
