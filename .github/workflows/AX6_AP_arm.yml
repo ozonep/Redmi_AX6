@@ -54,6 +54,7 @@ jobs:
     - name: Copy updated theme
       run: |
         cp feeds.conf.default openwrt/feeds.conf.default
+        cp mac80211.sh openwrt/package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a

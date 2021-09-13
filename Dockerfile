@@ -17,18 +17,17 @@ USER newuser
 RUN git clone https://github.com/Boos4721/openwrt --depth 1 openwrt
 WORKDIR /workdir/openwrt
 USER root
-COPY --chown=newuser luci-theme-atmaterial_new/. ./package/lean/luci-theme-atmaterial_new/.
-COPY --chown=newuser luci-theme-opentopd/. ./package/lean/luci-theme-opentopd/.
 COPY --chown=newuser mymin.config ./.config
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
+COPY --chown=newuser mac80211.sh ./package/kernel/mac80211/files/lib/wifi/mac80211.sh
 USER newuser
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 COPY --chown=newuser Makefile feeds/packages/net/nextdns/Makefile
 COPY --chown=newuser nextdns.config feeds/packages/net/nextdns/files/nextdns.config
 RUN sed -i 's/10.10.10.1/192.168.30.1/g' package/base-files/files/bin/config_generate
 RUN sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
-RUN sed -i 's/OpenWrt_2.4G/OpenWrt_5G/g'  package/kernel/mac80211/files/lib/wifi/mac80211.sh
-RUN sed -i '185s/OpenWrt_5G/OpenWrt_2.4G/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# RUN sed -i 's/OpenWrt_2.4G/OpenWrt_5G/g'  package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# RUN sed -i '185s/OpenWrt_5G/OpenWrt_2.4G/' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 RUN make defconfig && make -j4 download
 RUN echo -e "compiling" && \
     make -j4 && \
