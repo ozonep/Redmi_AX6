@@ -70,11 +70,6 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
-    - name: Copy updated theme
-      run: |
-        mv luci-theme-atmaterial_new openwrt/package/lean/luci-theme-atmaterial_new
-        mv luci-theme-opentopd openwrt/package/lean/luci-theme-opentopd
-
     - name: Download package
       id: package
       run: |
