@@ -17,12 +17,12 @@ USER newuser
 RUN git clone https://github.com/Boos4721/openwrt --depth 1 openwrt
 WORKDIR /workdir/openwrt
 USER root
+RUN rm -rf package/lean/luci-theme-argon
 COPY --chown=newuser mymin.config ./.config
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
 COPY --chown=newuser mac80211.sh ./package/kernel/mac80211/files/lib/wifi/mac80211.sh
 USER newuser
 RUN ./scripts/feeds update -a && ./scripts/feeds install -a
-COPY --chown=newuser Makefile feeds/packages/net/nextdns/Makefile
 COPY --chown=newuser nextdns.config feeds/packages/net/nextdns/files/nextdns.config
 RUN sed -i 's/10.10.10.1/192.168.30.1/g' package/base-files/files/bin/config_generate
 RUN sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
