@@ -22,9 +22,11 @@ COPY --chown=newuser full.config ./.config
 COPY --chown=newuser feeds.conf.default ./feeds.conf.default
 COPY --chown=newuser mac80211.sh ./package/kernel/mac80211/files/lib/wifi/mac80211.sh
 USER newuser
-RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 RUN sed -i 's/10.10.10.1/192.168.30.1/g' package/base-files/files/bin/config_generate
 RUN sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+RUN sed -i 's/CST-8/MSK-3/g' package/lean/default-settings/files/zzz-default-settings
+RUN sed -i 's/Asia\/Shanghai/Europe\/Moscow/g' package/lean/default-settings/files/zzz-default-settings
+RUN ./scripts/feeds update -a && ./scripts/feeds install -a
 RUN make -j4 download
 RUN echo -e "compiling" && \
     make -j2 && \
