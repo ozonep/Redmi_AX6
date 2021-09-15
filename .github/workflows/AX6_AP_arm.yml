@@ -12,7 +12,7 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/Boos4721/openwrt/tree/60c81b6c623734b840072000834bd72484cd5cb2
+  REPO_URL: https://github.com/ozonep/openwrt
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: mymin.config
